@@ -38,3 +38,6 @@ bin/
 *.tar.gz
 *.tmp*
 .tmp*
+
+### Webapp ###
+src/main/webapp/
