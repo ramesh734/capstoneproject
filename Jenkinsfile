@@ -1,97 +1,91 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_REGISTRY = 'your-registry.example.com'
-        DOCKER_IMAGE_BACKEND = "${DOCKER_REGISTRY}/asset-management-backend"
-        DOCKER_TAG = "${BUILD_NUMBER}"
-        K8S_NAMESPACE = 'default'
-        K8S_DEPLOYMENT = 'asset-backend'
-    }
-
-    parameters {
-        choice(name: 'ACTION', choices: ['build-test', 'build-test-push', 'build-test-push-deploy'], description: 'Pipeline stage to run')
-        string(name: 'DOCKER_TAG_OVERRIDE', defaultValue: '', description: 'Override Docker image tag (empty = build number)')
+    tools {
+        jdk 'Java17'
+        maven 'Maven'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code from Github') {
             steps {
-                checkout scm
+                echo 'Pulling from Github'
+                git branch: 'master', credentialsId: 'gitcred', url: 'https://github.com/ramesh734/capstoneproject.git'
             }
         }
 
-        stage('Build & Test') {
+        stage('Build project') {
             steps {
-                script {
-                    def tag = params.DOCKER_TAG_OVERRIDE ?: env.DOCKER_TAG
-                    env.FINAL_TAG = tag
-                }
-                echo "Building with Maven (tag: ${env.FINAL_TAG})..."
+                echo 'Building project to create JAR'
                 bat 'mvn clean package'
             }
-            post {
-                success {
-                    junit '**/target/surefire-reports/*.xml'
-                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-                }
+        }
+
+        stage('Create Docker Image') {
+            steps {
+                echo 'Creating Docker Image'
+                bat 'docker build -t asset-backend:latest .'
             }
         }
 
-        stage('Docker Build & Push') {
-            when {
-                expression { params.ACTION in ['build-test-push', 'build-test-push-deploy'] }
-            }
+        stage('Start Minikube') {
             steps {
-                script {
-                    docker.withRegistry("https://${DOCKER_REGISTRY}", 'docker-registry-credentials') {
-                        def img = docker.build("${DOCKER_IMAGE_BACKEND}:${env.FINAL_TAG}", '.')
-                        img.push()
-                        img.push('latest')
-                    }
-                }
+                echo 'Starting Minikube'
+                bat 'minikube start'
             }
         }
 
-        stage('Deploy to Kubernetes') {
-            when {
-                expression { params.ACTION == 'build-test-push-deploy' }
-            }
+        stage('Load Image to Minikube') {
             steps {
-                script {
-                    dir('k8s') {
-                        sh """
-                            sed -i 's|image:.*asset-management-backend.*|image: ${DOCKER_IMAGE_BACKEND}:${env.FINAL_TAG}|g' backend-deployment.yaml
-                        """
-                    }
-                }
-                withKubeConfig(cache: false, contextName: '', credentialsId: 'kubeconfig-credentials', namespace: K8S_NAMESPACE) {
-                    sh 'kubectl apply -f k8s/'
-                    sh "kubectl rollout status deployment/${K8S_DEPLOYMENT} -n ${K8S_NAMESPACE} --timeout=300s"
-                }
+                echo 'Loading Image to Minikube'
+                bat 'minikube image load asset-backend:latest'
             }
-            post {
-                success {
-                    echo "Deployment ${K8S_DEPLOYMENT} rolled out successfully."
-                }
-                failure {
-                    echo "Rollback triggered — deployment failed."
-                    sh "kubectl rollout undo deployment/${K8S_DEPLOYMENT} -n ${K8S_NAMESPACE}"
-                }
+        }
+
+        stage('Deploy Application to k8') {
+            steps {
+                echo 'Deploying Application'
+                bat 'kubectl apply -f k8s/'
+
+                echo 'Checking the pods status'
+                bat 'kubectl get pods'
+
+                echo 'Checking the service status'
+                bat 'kubectl get svc'
+            }
+        }
+
+        stage('Wait for Pods') {
+            steps {
+                echo 'Waiting for the pods to be ready'
+                bat 'kubectl wait --for=condition=Ready pod --all --timeout=120s'
+            }
+        }
+
+        stage('Access the Application in k8') {
+            steps {
+                echo 'Getting Application URL'
+                bat 'minikube service asset-backend --url'
+            }
+        }
+
+        stage('Open k8 Dashboard') {
+            steps {
+                echo 'Enabling metrics-server'
+                bat 'minikube addons enable metrics-server'
+
+                echo 'Opening K8s Dashboard'
+                bat 'minikube dashboard'
             }
         }
     }
 
     post {
         always {
-            cleanWs()
+            echo 'Build and Run is successful!'
         }
         failure {
-            emailext(
-                subject: "[Jenkins] ${env.JOB_NAME} #${env.BUILD_NUMBER} - FAILED",
-                body: "Pipeline ${env.BUILD_URL} failed.",
-                to: 'team@example.com'
-            )
+            echo 'The Pipeline failed :('
         }
     }
 }
