@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assets</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+   <div class="sidebar">
+			<h2>Menu</h2>
+			<a href="admin-dashboard.html">Dashboard</a> 
+			<a href="employees.html">Employees</a>
+			<a href="categories.html">Categories</a> 
+			<a href="vendors.html">Vendors</a>
+			<a href="assets.html">Assets</a> 
+			<a href="allocations.html">AssetAllocation</a>
+			<a href="maintenance.html">Maintenance</a> 
+			<a onclick="logout()">Logout</a>
+		</div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>Assets</h1>
+
+        <div id="message" class="message"></div>
+
+        <button class="btn" onclick="openForm()">+ Add Asset</button>
+
+        <br><br>
+
+        <table id="assetTable" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Serial Number</th>
+            <th>Availability</th>
+            <th>Category</th>
+            <th>Vendor</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+    </div>
+</div>
+
+<!-- POPUP FORM -->
+<div id="assetForm" class="modal">
+
+    <div class="modal-content">
+
+        <h2 id="formTitle">Add Asset</h2>
+
+        <div id="modalMessage" class="message"></div>
+
+        <input id="name" placeholder="Asset Name">
+        <input id="serialNumber" placeholder="Serial Number">
+
+        <select id="availability" placeholder="Availability">
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+           
+        </select>
+
+        <select id="categoryId"></select>
+        <select id="vendorId"></select>
+
+        <div style="display:flex;justify-content:space-between;">
+            <button class="btn" onclick="saveAsset()">Save</button>
+            <button class="btn" style="background:#6b7280;" onclick="closeForm()">Cancel</button>
+        </div>
+
+    </div>
+
+</div>
+<script src="../js/asset-api.js"></script>
+
+</body>
+</html>

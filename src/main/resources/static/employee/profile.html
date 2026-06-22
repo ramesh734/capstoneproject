@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <style>
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .profile-card {
+            width: 420px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #4e73df, #224abe);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: white;
+            color: #4e73df;
+            border-radius: 50%;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .profile-body {
+            padding: 20px;
+        }
+
+        .info {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+        }
+
+        .info span {
+            float: right;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #28a745;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h2>Employee Panel</h2>
+
+        <a href="employee-dashboard.html">Dashboard</a>
+        <a href="my-assets.html">My Assets</a>
+        <a href="my-requests.html">Maintenance</a>
+        <a class="active" href="profile.html">Profile</a>
+        <a href="#" onclick="logout()">Logout</a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>
+            My Profile
+            <span id="employeeName"></span>
+        </h1>
+
+        <div class="profile-container">
+
+            <div class="profile-card">
+
+                <!-- HEADER -->
+                <div class="profile-header">
+
+                    <div class="avatar" id="avatar">U</div>
+
+                    <h3 id="nameTop">User</h3>
+
+                    <div class="role-badge" id="roleTop">EMPLOYEE</div>
+
+                </div>
+
+                <!-- BODY -->
+                <div class="profile-body">
+
+                    <div class="info">
+                        Name <span id="name"></span>
+                    </div>
+
+                    <div class="info">
+                        Username <span id="username"></span>
+                    </div>
+
+                    <div class="info">
+                        Email <span id="email"></span>
+                    </div>
+
+                    <div class="info">
+                        Department <span id="department"></span>
+                    </div>
+
+                    <div class="info">
+                        Role <span id="role"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/profile.js"></script>
+
+</body>
+</html>

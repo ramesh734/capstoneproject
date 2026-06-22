@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Allocations</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+   <div class="sidebar">
+			<h2>Menu</h2>
+			<a href="admin-dashboard.html">Dashboard</a> 
+			<a href="employees.html">Employees</a>
+			<a href="categories.html">Categories</a> 
+			<a href="vendors.html">Vendors</a>
+			<a href="assets.html">Assets</a> 
+			<a href="allocations.html">AssetAllocation</a>
+			<a href="maintenance.html">Maintenance</a> 
+			<a onclick="logout()">Logout</a>
+		</div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>Allocations</h1>
+
+        <div id="message" class="message"></div>
+
+        <button class="btn" onclick="openForm()">+ Add Allocation</button>
+
+        <br><br>
+
+        <table id="allocTable" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Asset ID</th>
+                    <th>Employee ID</th>
+                    <th>Allocated Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- POPUP -->
+<div id="allocForm" class="modal">
+
+    <div class="modal-content">
+
+        <h2 id="formTitle">Add Allocation</h2>
+
+        <div id="modalMessage" class="message"></div>
+
+        <input id="assetId" placeholder="Asset ID">
+        <input id="employeeId" placeholder="Employee ID">
+
+        <label>Allocated Date</label>
+        <input type="date" id="allocatedDate">
+
+        <label>Return Date</label>
+        <input type="date" id="returnDate">
+
+        <select id="status">
+            <option value="ASSIGNED">ASSIGNED</option>
+           
+        </select>
+
+        <input id="remarks" placeholder="Remarks">
+
+        <div style="display:flex;justify-content:space-between;">
+            <button class="btn" onclick="saveAllocation()">Save</button>
+            <button class="btn" style="background:#6b7280;" onclick="closeForm()">Cancel</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/allocation-api.js"></script>
+
+</body>
+</html>

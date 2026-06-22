@@ -1,0 +1,194 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* =========================
+   BODY BACKGROUND
+========================= */
+body {
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* =========================
+   LAYOUT WRAPPER
+========================= */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 240px;
+    background: #111827; /* dark navy */
+    color: white;
+    padding: 20px 0;
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: #fff;
+}
+
+/* menu links */
+.sidebar a {
+    display: block;
+    padding: 12px 25px;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.sidebar a:hover {
+    background: #1f2937;
+    color: #fff;
+}
+
+.sidebar a.active {
+    background: #2563eb;
+    color: white;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.main {
+    margin-left: 240px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.card p {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #111827;
+}
+
+/* =========================
+   TABLE DESIGN
+========================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+table thead {
+    background: #2563eb;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+table tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   BUTTONS (READ ONLY STYLE)
+========================= */
+.btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-success {
+    background: #10b981;
+    color: white;
+}
+
+/* =========================
+   SMALL INFO BOX
+========================= */
+.info-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .main {
+        margin-left: 180px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Maintenance Requests</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h2>Employee Panel</h2>
+
+        <a href="employee-dashboard.html">Dashboard</a>
+        
+        <a href="my-assets.html">My Assets</a>
+        <a class="active" href="my-requests.html">Maintenance</a>
+        <a href="profile.html">Profile</a>
+        <a href="#" onclick="logout()">Logout</a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>My Maintenance Requests</h1>
+
+        <div id="message" class="message"></div>
+
+        <!-- CREATE REQUEST -->
+        <div class="card" style="padding:20px; margin-bottom:20px;">
+
+            <h3>Create Request</h3>
+
+            <input type="number" id="assetId" placeholder="Asset ID"><br><br>
+
+            <textarea id="description" placeholder="Issue description"></textarea><br><br>
+
+            <button onclick="createRequest()">Submit</button>
+
+        </div>
+
+        <!-- TABLE -->
+        <h2>My Requests</h2>
+
+        <table width="100%" id="reqTable">
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Asset</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="../js/my-requests.js"></script>
+
+</body>
+</html>

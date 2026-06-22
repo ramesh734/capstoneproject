@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vendors</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR (NO CHANGE) -->
+    <div class="sidebar">
+
+        <h2>Menu</h2>
+
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="employees.html">Employees</a>
+        <a href="assets.html">Assets</a>
+        <a href="vendors.html">Vendors</a>
+        <a href="categories.html">Categories</a>
+        <a href="allocations.html">Allocations</a>
+        <a href="maintenance.html">Maintenance</a>
+
+        <a onclick="logout()">Logout</a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>Vendors</h1>
+
+        <div id="message" class="message"></div>
+
+        <button class="btn" onclick="openForm()">
+            + Add Vendor
+        </button>
+
+        <br><br>
+
+        <table id="vendorTable" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- POPUP FORM -->
+<div id="vendorForm" class="modal">
+
+    <div class="modal-content">
+
+        <h2 id="formTitle">Add Vendor</h2>
+
+        <div id="modalMessage" class="message"></div>
+
+        <input id="name" placeholder="Vendor Name">
+        <input id="email" placeholder="Email">
+        <input id="phone" placeholder="Phone">
+        <input id="address" placeholder="Address">
+
+        <div style="display:flex; justify-content:space-between;">
+            <button onclick="saveVendor()" class="btn">Save</button>
+            <button onclick="closeForm()" class="btn" style="background:#6b7280;">Cancel</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/vendor-api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+	<div class="container">
+		<div class="sidebar">
+			<h2>Menu</h2>
+			<a href="admin-dashboard.html">Dashboard</a> 
+			<a href="employees.html">Employees</a>
+			<a href="categories.html">Categories</a> 
+			<a href="vendors.html">Vendors</a>
+			<a href="assets.html">Assets</a> 
+			<a href="allocations.html">AssetAllocation</a>
+			<a href="maintenance.html">Maintenance</a> 
+			<a onclick="logout()">Logout</a>
+		</div>
+		<div class="content">
+			<h1>System Overview</h1>
+			<div class="cards">
+				<div class="card">
+					<h2 id="employeeCount">0</h2>
+					<p>Total Employees</p>
+				</div>
+				<div class="card">
+					<h2 id="assetCount">0</h2>
+					<p>Total Assets</p>
+				</div>
+				<div class="card">
+					<h2 id="vendorCount">0</h2>
+					<p>Total Vendors</p>
+				</div>
+				<div class="card">
+					<h2 id="categoryCount">0</h2>
+					<p>Total Categories</p>
+				</div>
+				<div class="card">
+					<h2 id="allocationCount"></h2>
+					<p>Total Allocations</p>
+				</div>
+				<div class="card">
+					<h2 id="maintenanceCount">0</h2>
+					<p>Total Maintenance</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script src="../js/dashboard.js"></script>
+</body>
+</html>

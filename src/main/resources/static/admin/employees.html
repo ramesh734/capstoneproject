@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar (NO CHANGE) -->
+    <div class="sidebar">
+			<h2>Menu</h2>
+			<a href="admin-dashboard.html">Dashboard</a> 
+			<a href="employees.html">Employees</a>
+			<a href="categories.html">Categories</a> 
+			<a href="vendors.html">Vendors</a>
+			<a href="assets.html">Assets</a> 
+			<a href="allocations.html">AssetAllocation</a>
+			<a href="maintenance.html">Maintenance</a> 
+			<a onclick="logout()">Logout</a>
+		</div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <h1>Employees</h1>
+
+        <div id="message" class="message"></div>
+
+        <button class="btn" onclick="openForm()">
+            + Add Employee
+        </button>
+
+        <br><br>
+
+        <table id="empTable" border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- POPUP FORM -->
+<div id="employeeForm" class="modal">
+
+    <div class="modal-content">
+
+        <h2 id="formTitle">Add Employee</h2>
+
+        <div id="modalMessage" class="message"></div>
+
+        <input id="name" placeholder="Name">
+        <input id="email" placeholder="Email">
+        <input id="dept" placeholder="Department">
+        <input id="username" placeholder="Username">
+        <input id="password" placeholder="Password">
+
+        <select id="role">
+            <option value="ROLE_EMPLOYEE">ROLE_EMPLOYEE</option>
+            <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+        </select>
+
+        <div style="display:flex; justify-content:space-between;">
+            <button onclick="saveEmployee()" class="btn">Save</button>
+            <button onclick="closeForm()" class="btn" style="background:#6b7280;">Cancel</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/employee-api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <h2>Menu</h2>
+
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="employees.html">Employees</a>
+        <a href="assets.html">Assets</a>
+        <a href="vendors.html">Vendors</a>
+        <a href="categories.html">Categories</a>
+        <a href="allocations.html">Allocations</a>
+        <a href="maintenance.html">Maintenance</a>
+
+        <a onclick="logout()">Logout</a>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h1>Categories</h1>
+
+        <div id="message" class="message"></div>
+
+        <button class="btn" onclick="openForm()">
+            + Add Category
+        </button>
+
+        <br><br>
+
+       <table id="categoryTable" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+    </div>
+</div>
+
+<!-- POPUP -->
+<div id="categoryForm" class="modal">
+
+    <div class="modal-content">
+
+        <h2 id="formTitle">Add Category</h2>
+
+        <div id="modalMessage" class="message"></div>
+
+        <input id="name" placeholder="Category Name">
+     
+     
+
+        <div style="display:flex;justify-content:space-between;">
+            <button class="btn" onclick="saveCategory()">Save</button>
+            <button class="btn" style="background:#6b7280;" onclick="closeForm()">Cancel</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/category-api.js"></script>
+
+</body>
+</html>
