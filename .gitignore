@@ -32,6 +32,12 @@ build/
 ### VS Code ###
 .vscode/
 
+### Maven wrapper (not needed; Docker builds have Maven) ###
+.mvn/
+mvnw
+mvnw.cmd
+.gitattributes
+
 ### Build artifacts ###
 bin/
 *.tar
