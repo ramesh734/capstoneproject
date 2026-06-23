@@ -45,5 +45,4 @@ bin/
 *.tmp*
 .tmp*
 
-### Webapp ###
-src/main/webapp/
+
