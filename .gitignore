@@ -32,6 +32,18 @@ build/
 ### VS Code ###
 .vscode/
 
+### Temporary config files ###
+/tools.groovy
+/full-config.groovy
+/jenkins-config.groovy
+/run-config.sh
+/setup-jenkins.sh
+/debug.sh
+/runcli.sh
+/job-config.xml
+/script.groovy
+/jenkins-cli.jar
+
 ### Maven wrapper (not needed; Docker builds have Maven) ###
 .mvn/
 mvnw
